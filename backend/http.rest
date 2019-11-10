@@ -1,0 +1,99 @@
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRoaWFnb0BnbWFpbC5jb20iLCJfaWQiOiI1ZGM4NmNmNmI1Nzk4MTM1ZDFkYzQyOWQiLCJuYW1lIjoiVGVzdGUgdXNlciAyIiwiaWF0IjoxNTczNDE2ODg5LCJleHAiOjE1NzM1MDMyODl9.9Mdxl5uukxjadNq8otK-kkBJLwAOev5JAxgPXq0cKs8
+@url = http://localhost:8357/api
+
+// todas as rotas devem conter o campo token no header
+
+###
+# Login User
+POST {{url}}/login
+Content-Type: application/json
+
+{
+  "email": "thiago@gmail.com",
+  "password": "123"
+}
+
+###
+# Validação de token
+GET {{url}}/me?token={{token}}
+Content-Type: application/json
+
+###
+# Busca detalhes de um usuario
+@id = 5dc86cf6b5798135d1dc429d
+GET {{url}}/v1/users/{{id}}
+Content-Type: application/json
+authorization: {{token}}
+
+###
+# Busca todos os usuário paginados de 5 em 5
+get {{url}}/v1/users/list
+Content-Type: application/json
+authorization: {{token}}
+
+###
+# Busca todos os usuário  com filtragem
+get {{url}}/v1/users/filter?name=thiago&date=2019-11-11
+Content-Type: application/json
+authorization: {{token}}
+
+###
+# Cria um usuário
+POST {{url}}/v1/users
+Content-Type: application/json
+authorization: {{token}}
+
+{
+  "email": "thiago@gmail.com",
+  "password": "123",
+  "name": "Teste user 2",
+  "contatos": [
+    {
+      "type": "telefone",
+      "value": "42999981464"
+    },
+    {
+      "type": "celular",
+      "value": "42999981464"
+    },
+    {
+      "type": "email",
+      "value": "thiago testes"
+    },{
+      "type": "linkedin",
+      "value": "thiagohagy"
+    }
+  ]
+}
+
+###
+# Edita um usuário
+PUT {{url}}/v1/users/5dc86cf6b5798135d1dc429d
+Content-Type: application/json
+authorization: {{token}}
+
+{
+  "email": "thiago@gmasdil.com",
+  "name": "thiago",
+  "contatos": [{
+      "type": "email0",
+      "value": "thiagotestes.combr"
+    }, {
+      "type": "celular",
+      "value": "42999981464"
+    }, {
+      "type": "email",
+      "value": "thiago testes"
+    }, {
+      "type": "linkedin",
+      "value": "thiagohagy"
+    }
+  ]
+}
+
+###
+# Soft delete de um usuário
+DELETE {{url}}/v1/users/5dc868c1f408113127aa0e28
+Content-Type: application/json
+authorization: {{token}}
