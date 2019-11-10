@@ -1,7 +1,7 @@
 const Model = require('./../users/model');
-const config = require('../config');
+const config = require('../../config');
 const mongoose = require('mongoose');
-const to = require('./../to');
+const to = require('./../../to');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database, {

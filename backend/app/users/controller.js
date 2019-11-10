@@ -2,7 +2,7 @@
 const Model = require('./model');
 const Contato = require('./modelContatos');
 const bcrypt = require('bcrypt-nodejs');
-const to = require('../to');
+const to = require('../../to');
 const mongoose = require('mongoose');
 const moment = require('moment');
 

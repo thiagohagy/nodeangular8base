@@ -28,13 +28,13 @@ app.get('/api/', function(req, res, next) {
 });
 
 /*users login*/
-app.use('/api/', require('./auth/index'));
+app.use('/api/', require('./app/auth/index'));
 
 /*JWT validation*/
 const jwt = require('./jwt');
 app.use('/api/v1', jwt);
 
-jwt.use('/users', require('./users/index'));
+jwt.use('/users', require('./app/users/index'));
 
 
 server.listen(config.port, '127.0.0.1');

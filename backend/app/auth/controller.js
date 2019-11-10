@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
-const config = require('../config');
+const config = require('../../config');
 const User = require('../users/model');
 
 /*Usuario Routes*/
