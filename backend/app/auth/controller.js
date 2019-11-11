@@ -7,8 +7,6 @@ const User = require('../users/model');
 exports.login = async (req, res) => {
   const user = await User.findOne({ email: req.body.email , active: true });
 
-  // console.log(req.body);
-
   if (!user) {
     res.json({
       success: false,

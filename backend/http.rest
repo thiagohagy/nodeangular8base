@@ -28,13 +28,13 @@ authorization: {{token}}
 
 ###
 # Busca todos os usuário paginados de 5 em 5
-get {{url}}/v1/users/list
+get {{url}}/v1/users/list?skip=0&limit=5
 Content-Type: application/json
 authorization: {{token}}
 
 ###
 # Busca todos os usuário  com filtragem
-get {{url}}/v1/users/filter?name=thiago&date=2019-11-11
+get {{url}}/v1/users/filter?name=luciane&date=2019-11-11
 Content-Type: application/json
 authorization: {{token}}
 

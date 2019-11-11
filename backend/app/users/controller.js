@@ -14,8 +14,8 @@ exports.index = async (req, res) => {
 
   const data = await 
     Model.find(filtro , { email:1, creationDate:1, name:1 })
-      .skip(req.body.skip || 0)
-      .limit(req.body.limit || 5);
+      .skip( parseInt(req.query.skip) || 0)
+      .limit( parseInt(req.query.limit) || 5);
 
   const total = await Model.estimatedDocumentCount(filtro);
 
@@ -37,8 +37,8 @@ exports.index = async (req, res) => {
 exports.filter = async (req, res) => {
 
   const nameFilter = req.query.name ? req.query.name : '' ;
-  const dateFilter = req.query.date ? req.query.date : moment().format() ;
   
+  const dateFilter = req.query.date ? req.query.date : moment().format() ;
   const startDate = moment(dateFilter).startOf('day').toISOString();
   const finishDate = moment(dateFilter).endOf('day').toISOString();
 
@@ -61,7 +61,7 @@ exports.filter = async (req, res) => {
       {
         $project:{ 
           'login_email':'$email',
-          'nome': 'name',
+          'nome': '$name',
           'data_criacao':'$creationDate',
           'contatos':'$contacts'
         },
