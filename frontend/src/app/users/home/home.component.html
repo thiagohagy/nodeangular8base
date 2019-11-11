@@ -1,0 +1,37 @@
+
+
+    <div class="col">        
+        <div class="btn-group mt-3" role="group" aria-label="Button group">
+            <button class="btn btn-info col" type="button">Add</button>    
+        </div>
+    </div>
+
+    <div class="col">
+        
+        <table class="table table-light mt-3">
+            <thead class="thead-light">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Contatos</th>
+                        <th>Opções</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.contatos }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info pointer" [routerLink]="['users/form/', user._id]">Editar</button> | 
+                        <button class="btn btn-sm btn-danger pointer" (click)="removeUser(user._id)">Remover</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
