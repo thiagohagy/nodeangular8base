@@ -1,14 +1,13 @@
 
 
-    <div class="col">        
-        <div class="btn-group mt-3" role="group" aria-label="Button group">
-            <button class="btn btn-info col" type="button">Add</button>    
-        </div>
+    <div class="btn-group mt-3 col-6 mx-auto" role="group" aria-label="Button group">
+        <button class="btn btn-success col" type="button">Add usuário</button>    
+        <button class="btn btn-info col" [routerLink]="['buscaDetalhada']" type="button">Busca detalhada</button>    
     </div>
 
     <div class="col">
         
-        <table class="table table-light mt-3">
+        <table class="table table-light mt-3 table-striped">
             <thead class="thead-light">
                     <tr>
                         <th>Nome</th>
@@ -21,17 +20,12 @@
                 <tr *ngFor="let user of users">
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.contatos }}</td>
+                    <td>{{ user.contatos.length }} contatos cadastrados</td>
                     <td>
                         <button class="btn btn-sm btn-info pointer" [routerLink]="['users/form/', user._id]">Editar</button> | 
                         <button class="btn btn-sm btn-danger pointer" (click)="removeUser(user._id)">Remover</button>
                     </td>
                 </tr>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>#</th>
-                </tr>
-            </tfoot>
         </table>
     </div>

@@ -1,38 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
-import { environment } from '@environments/environment';
+import { environment } from './../../environments/environment';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
+    public token:String;
 
-    constructor(private http: HttpClient) {
-        this.currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })
     }
 
-    public get currentUserValue() {
-        return this.currentUserSubject.value;
+    constructor(private http: HttpClient, private router: Router) {
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
-        .pipe(map(user => {
-            console.log(user)
-            // user.authdata = window.btoa(username + ':' + password);
-            // localStorage.setItem('currentUser', JSON.stringify(user));
-            // this.currentUserSubject.next(user);
-            return user;
-        }));
+
+    async login(email: string, password: string) {
+        return new Promise((resolve, reject) => {
+            this.http.post<any>(`${environment.baseURL}login`, {email, password }, this.httpOptions)
+            .subscribe(response => {
+
+                if (response.success) {
+                    localStorage.setItem('token', response.token);
+                    this.token = response.token;
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+            });
+        })
+
     }
 
     logout() {
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+        localStorage.removeItem('token');
+        this.router.navigate(['login']);
     }
 }

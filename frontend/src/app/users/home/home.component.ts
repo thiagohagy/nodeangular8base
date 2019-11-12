@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -7,21 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  users = [
-    {name:'testes', email:'email', contatos: 'contatos', _id: '1'}
-  ] 
+  users = []; 
 
-  removeUser(userId: String) {
-    console.log(userId);
-  }
 
   fetchUsers() {
-    
+    this.http.get<any>(`${environment.baseURL}v1/users/list`).subscribe((response) => {
+      this.users = response.data;
+    })
   }
 
-  constructor() { }
+removeUser(id: String) {
+    if(confirm('Deseja realmente remover o usuario?')) {
+      this.http.delete<any>(`${environment.baseURL}v1/users/${id}`).subscribe((response) => {
+        this.fetchUsers();
+      })
+    }
+  }
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.fetchUsers();
   }
 
 }

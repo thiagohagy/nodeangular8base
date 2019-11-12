@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthenticationService } from './../../helpers/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,20 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  email = 'testes';
-  password = 'testes';
+  email = 'thiago@gmail.com';
+  password = '123';
   showError = false;
+  showSuccess = false;
 
-  logar() {
+  async logar()  {
     this.showError = false;
-    if (this.password && this.email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i)){
-      this.showError = false;
+    if (this.password && this.email){
+      
+      let respLogin = await this.authService.login(this.email, this.password);
+
+      if (respLogin === true) {
+        this.showSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['users']);          
+        }, 1000);
+      } else {
+        this.showError = true;
+      }
+
     } else {
       this.showError = true;
     }
   }
 
-  constructor() { }
+  constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
   }
