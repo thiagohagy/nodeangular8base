@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-
-import { environment } from './../../environments/environment';
-
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    public token:String;
+    public token:Subject<any>;
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -22,12 +20,13 @@ export class AuthenticationService {
 
     async login(email: string, password: string) {
         return new Promise((resolve, reject) => {
-            this.http.post<any>(`${environment.baseURL}login`, {email, password }, this.httpOptions)
+            this.http.post<any>('login', {email, password }, this.httpOptions)
             .subscribe(response => {
 
                 if (response.success) {
                     localStorage.setItem('token', response.token);
                     this.token = response.token;
+
                     resolve(true);
                 } else {
                     resolve(false);

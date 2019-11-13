@@ -10,16 +10,21 @@ import  { Subscription } from 'rxjs';
 })
 export class NavComponent implements OnInit {
 
-  private userToken: Subscription;
+  private userToken: String;
 
   logout() {
+    this.userToken = '';
     this.authService.logout();
   }
 
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
-    // this.userToken =  this.authService.token.subscribe();
+    this.userToken =  localStorage.getItem('token');
+  }
+  
+  ngAfterContentChecked() {
+    this.userToken =  localStorage.getItem('token');
   }
 
 }

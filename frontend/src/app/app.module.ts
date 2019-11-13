@@ -11,6 +11,8 @@ import { NavComponent } from './shared/nav/nav.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthInterceptor } from './helpers/auth.interceptor';
+import { AuthGuard } from './helpers/auth.guard';
+import { BuscaDetalhadaComponent } from './users/busca-detalhada/busca-detalhada.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
     FormComponent,
     LoginComponent,
     NavComponent,
+    BuscaDetalhadaComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
     HttpClientModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true},
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

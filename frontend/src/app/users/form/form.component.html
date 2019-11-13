@@ -1,1 +1,113 @@
-<p>form works!</p>
+
+
+
+
+<div class="col">
+
+    .<div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Formulário de usuários</h5>
+        </div>
+        <div class="card-body">
+            <form  >
+                <div class="row">
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="name">Nome do usuário</label>
+                            <input type="email" class="form-control" id="name" [(ngModel)]="name" name="name" placeholder="Nome do usuário">
+                        </div>                    
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="email">Email do usuário</label>
+                            <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" placeholder="Email do usuário">
+                            <small id="emailHelp" class="form-text text-muted">Usado para fazer o login</small>
+                        </div>                    
+                    </div>
+                    
+                    <div class="w-100"></div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="pass">Senha</label>
+                            <input type="password" class="form-control" autocomplete="false" id="password" [(ngModel)]="password" name="password" placeholder="Senha">
+                            <small id="emailHelp" class="form-text text-muted" *ngIf="_id">Deixe a senha em branco para manter a atual</small>
+                        </div>                    
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="passc">Confirmação da senha</label>
+                            <input type="password" class="form-control" id="passc" [(ngModel)]="passwordC" name="passwordC" placeholder="Email do usuário">
+                        </div>                    
+                    </div>
+                   
+                    <div class="w-100"></div>
+
+                    <div class="col-12">
+                        <hr/>
+                        <div class="form-group">
+                            <h4>Contatos</h4>
+                            <div class="input-group" >
+                                <input class="form-control" type="text" [(ngModel)]="contactType" name="contactType" placeholder="Tipo do contato">
+                                <input class="form-control" type="text" [(ngModel)]="contactValue" name="contactValue" placeholder="Informaçao">
+                                <div class="input-group-append">
+                                    <span class="input-group-text btn btn-info" (click)="addContato()" id="my-addon">+</span>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+
+                    <div class="col">
+                        <b>Contatos cadastrados</b>
+                        <table class="table table-light col-12 table-striped">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tipo</th>
+                                    <th>Valor</th>
+                                    <th>Opção</th>
+                                </tr>
+                            </thead>
+                                
+                            <tbody>
+                                <tr *ngFor="let contato of contatos; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{contato.type}}</td>
+                                    <td>{{contato.value}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger" (click)="contatos.splice(i, 1)">Remover</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr/>
+
+                    <div class="col-12">
+                        <div class="alert alert-danger text-center" *ngIf="hasError" role="alert">
+                            <strong>Atenção!!!</strong> {{ errorMsg }}
+                        </div>
+                    </div>
+                    
+                    <div class="col-12">
+                        <div class="alert alert-success text-center" *ngIf="hasSuccess" role="alert">
+                            <strong>Atenção!!!</strong> {{ successMsg }}
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-center">
+                        <div class="col">
+                            <button [routerLink]="['/users']" class="btn col-2 btn-md btn-danger mr-2">Cancelar</button>                        
+                            <button (click)='confirmForm()' class="btn col-2 btn-md btn-success">Confirmar</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>    
+        </div>
+    </div>
+</div>

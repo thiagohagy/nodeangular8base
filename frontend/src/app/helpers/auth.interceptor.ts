@@ -3,6 +3,9 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
+import { environment } from './../../environments/environment';
+
+
 import { AuthenticationService } from './auth.service';
 
 @Injectable()
@@ -10,10 +13,15 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private authService: AuthenticationService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-                
-        const token = this.authService.token;
+
+        let clone = request.clone({
+            url: `${environment.baseURL}${request.url}`
+        });
+
+        const token = localStorage.getItem('token');
+        
         if (token) {
-            request = request.clone({
+            clone = clone.clone({
                 setHeaders: { 
                     Authorization: `${token}`
                 }
@@ -22,6 +30,6 @@ export class AuthInterceptor implements HttpInterceptor {
             this.authService.logout();
         }
 
-        return next.handle(request);
+        return next.handle(clone);
     }
 }

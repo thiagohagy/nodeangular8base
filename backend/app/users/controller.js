@@ -37,8 +37,10 @@ exports.index = async (req, res) => {
 exports.filter = async (req, res) => {
 
   const nameFilter = req.query.name ? req.query.name : '' ;
-  
-  const dateFilter = req.query.date ? req.query.date : moment().format() ;
+
+  let regex = `.*${nameFilter}.*`; 
+  let dateFilter = req.query.date ? moment(new Date(req.query.date)).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD') ;
+
   const startDate = moment(dateFilter).startOf('day').toISOString();
   const finishDate = moment(dateFilter).endOf('day').toISOString();
 
@@ -46,7 +48,7 @@ exports.filter = async (req, res) => {
     [
       { 
         $match: { 
-          name: {$regex: nameFilter, $options: 'gmi'},
+          name: {$regex: regex, $options: 'gmi'},
           creationDate: { $gte: new Date(startDate), $lte: new Date(finishDate) }
         }
       },
@@ -60,6 +62,7 @@ exports.filter = async (req, res) => {
       },
       {
         $project:{ 
+          'ativo':'$active',
           'login_email':'$email',
           'nome': '$name',
           'data_criacao':'$creationDate',
