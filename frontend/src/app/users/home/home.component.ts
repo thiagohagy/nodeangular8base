@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,8 @@ export class HomeComponent implements OnInit {
     this.http.get<any>(`v1/users/list?skip=${skip}&limit=${limit}`).subscribe((response) => {
       this.users = response.data;
       this.paginationOpts.totalUsers = response.total;
+      
+      if (response.total == 0) this.toastr.warning('Nenhum usuário encontrado!','Ops!!')
     })
   }
 
@@ -38,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.fetchUsers();

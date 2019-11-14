@@ -1,5 +1,5 @@
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhZ3lAZ21haWwuY29tIiwiX2lkIjoiNWRjOTcxYzUwMzY1YTgzNTU0MzA5NjdkIiwibmFtZSI6InRoaWFnbyBoYWd5IiwiaWF0IjoxNTczNzMxMzkwLCJleHAiOjE1NzM4MTc3OTB9.llmCfNxVMYvgHFCnC-CveI_5LKrkfG_vH726VhUdbbQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvb3RAc2lzdGVtYS5jb20iLCJfaWQiOiI1ZGNkYWNhY2QyMzJjZjBhZGNiMGUxYzQiLCJuYW1lIjoicm9vdCIsImlhdCI6MTU3Mzc2MTk3NiwiZXhwIjoxNTczODQ4Mzc2fQ.Q3Sgbq40YR4sKbYyGno4vNtCqFxeyTJ7oWcoTx4HT9Y
 @url = http://localhost:8357/api
 
 // todas as rotas devem conter o campo token no header
@@ -10,7 +10,7 @@ POST {{url}}/login
 Content-Type: application/json
 
 {
-  "email": "luciane@gmail.com",
+  "email": "root@sistema.com",
   "password": "123"
 }
 
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 ###
 # Busca detalhes de um usuario
-@id = 5dc86cf6b5798135d1dc429d
+@id = 5dcdacacd232cf0adcb0e1c4
 GET {{url}}/v1/users/{{id}}
 Content-Type: application/json
 authorization: {{token}}
@@ -34,7 +34,7 @@ authorization: {{token}}
 
 ###
 # Busca todos os usuário  com filtragem
-get {{url}}/v1/users/filter?name=luciane&date=2019-11-11
+get {{url}}/v1/users/filter?name=user1&date=2019-11-14
 Content-Type: application/json
 authorization: {{token}}
 
@@ -45,7 +45,7 @@ Content-Type: application/json
 authorization: {{token}}
 
 {
-  "email": "thiago@gmail.com",
+  "email": "teste@gmail.com",
   "password": "123",
   "name": "Teste user 2",
   "contatos": [

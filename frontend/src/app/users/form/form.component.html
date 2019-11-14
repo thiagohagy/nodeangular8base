@@ -75,8 +75,12 @@
                             <tbody>
                                 <tr *ngFor="let contato of contatos; let i = index">
                                     <td>{{i + 1}}</td>
-                                    <td>{{contato.type}}</td>
-                                    <td>{{contato.value}}</td>
+                                    <td>
+                                        <input class="form-control" type="text" [name]='"contatotype"+i'  [(ngModel)]="contato.type">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" [name]='"contatovalue"+i' [(ngModel)]="contato.value">
+                                    </td>
                                     <td>
                                         <button class="btn btn-sm btn-danger" (click)="contatos.splice(i, 1)">Remover</button>
                                     </td>
@@ -93,12 +97,6 @@
                         </div>
                     </div>
                     
-                    <div class="col-12">
-                        <div class="alert alert-success text-center" *ngIf="hasSuccess" role="alert">
-                            <strong>Atenção!!!</strong> {{ successMsg }}
-                        </div>
-                    </div>
-
                     <div class="col-12 text-center">
                         <div class="col">
                             <button [routerLink]="['/users']" class="btn col-2 btn-md btn-danger mr-2">Cancelar</button>                        

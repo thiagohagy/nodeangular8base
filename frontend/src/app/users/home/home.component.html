@@ -28,13 +28,15 @@
                 </tr>
             </tbody>
         </table>
-        {{page}}
-        <pagination-controls 
+        
+        <div class="col-12 text-center">
+            <pagination-controls 
             (pageChange)="fetchUsers($event)"
             directionLinks="true"
             autoHide="true"
             responsive="true"
             previousLabel="Anterior"
             nextLabel="Próxima"
-        ></pagination-controls>
+            ></pagination-controls>
+        </div>
     </div>

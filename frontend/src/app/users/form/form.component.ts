@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { ToastrService } from 'ngx-toastr';
+
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -31,9 +34,7 @@ export class FormComponent implements OnInit {
   confirmForm() {
 
     this.hasError = false;
-    this.hasSuccess = false;
     this.errorMsg = '';
-    this.successMsg = '';
 
     if ( this.email && this.name && this.contatos.length > 0 ) {
 
@@ -45,8 +46,7 @@ export class FormComponent implements OnInit {
           contatos: this.contatos,
         }).subscribe((response) => {
           if (response.success) {
-            this.hasSuccess = true;
-            this.successMsg = 'Editado com sucesso';
+            this.toastr.success('Editado com sucesso', 'Sucesso!!!'); 
             this.router.navigate(['users']);
           } else {
             this.hasError = true;
@@ -62,8 +62,7 @@ export class FormComponent implements OnInit {
           contatos: this.contatos,
         }).subscribe((response) => {
           if (response.success) {
-            this.hasSuccess = true;
-            this.successMsg = 'Cadastrado com sucesso';  
+            this.toastr.success('Cadastrado com sucesso', 'Sucesso!!!'); 
             this.router.navigate(['users']);
           } else {
             this.hasError = true;
@@ -91,7 +90,12 @@ export class FormComponent implements OnInit {
       })
   }
 
-  constructor(private http:HttpClient, private router: Router, private route: ActivatedRoute ) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService 
+  ) { }
 
   ngOnInit() {
     
