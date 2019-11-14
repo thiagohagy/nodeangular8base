@@ -10,7 +10,6 @@ Para a instalação do projeto
 Backend:
 ```
   cd backend
-  cp config.js.dist config.js
   npm install
   nodemon index.js
 ```
