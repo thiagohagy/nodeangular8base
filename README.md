@@ -44,8 +44,9 @@ Dados do post
 
 Validar token e retornar dados do token informado se o token for válido
 
+```
 GET http://localhost:8357/api/me?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvb3RAc2lzdGVtYS5jb20iLCJfaWQiOiI1ZGNkYWNhY2QyMzJjZjBhZGNiMGUxYzQiLCJuYW1lIjoicm9vdCIsImlhdCI6MTU3Mzc2MTk3NiwiZXhwIjoxNTczODQ4Mzc2fQ.Q3Sgbq40YR4sKbYyGno4vNtCqFxeyTJ7oWcoTx4HT9Y
-
+```
 
 ```
 // Resposta de sucesso
