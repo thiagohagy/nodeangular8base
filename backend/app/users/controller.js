@@ -17,7 +17,7 @@ exports.index = async (req, res) => {
       .skip( parseInt(req.query.skip) || 0)
       .limit( parseInt(req.query.limit) || 5);
 
-  const total = await Model.estimatedDocumentCount(filtro);
+  const total = await Model.countDocuments(filtro);
 
   const newUsers = [];
   for (let i = 0; i < data.length; i++) {

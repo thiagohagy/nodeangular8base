@@ -17,7 +17,7 @@
                     </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users">
+                <tr *ngFor="let user of users | paginate: { itemsPerPage: paginationOpts.perPage, currentPage: paginationOpts.page, totalItems: paginationOpts.totalUsers }">
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.contatos.length }} contatos cadastrados</td>
@@ -28,4 +28,13 @@
                 </tr>
             </tbody>
         </table>
+        {{page}}
+        <pagination-controls 
+            (pageChange)="fetchUsers($event)"
+            directionLinks="true"
+            autoHide="true"
+            responsive="true"
+            previousLabel="Anterior"
+            nextLabel="Próxima"
+        ></pagination-controls>
     </div>
