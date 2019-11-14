@@ -2,9 +2,13 @@
 
 * Para facilitar os testes das rotas, basta instalar a extensão REST Client para o visual studio e usar o arquivo /backend/http.rest.
 * Ao clicar em SendRequest a IDE vai fazer uma requisição conforme os parâmetros de cada request   
-* Todos as rotas exceto /me e /login são autenticadas e devem conter o campo 'token', ou então você deve enviar o token no header 'authorization'
+* Todos as rotas exceto /me e /login são autenticadas e devem conter o campo 'token'(via query param), ou então você deve enviar o token no header 'authorization'
 * Todos os requests devem conter o Content-Type: application/json
-* Em todas as rotas autenticadas subintende-se que o token esta no header para facilitar a visualização dos exemplos
+* Em todas as rotas autenticadas documentadas subentende-se que o token esta no header para facilitar a visualização dos exemplos
+------------------------------
+
+* Para fazer o login no sistema após fazer o restore do banco de dados, voce pode usar as credenciais do exemplo de login a seguir
+
 ------------------------------
 
 Rotas não autenticadas
@@ -15,7 +19,7 @@ Fazer login
 POST http://localhost:8357/api/login
 ```
 
-Dados do post
+Dados do post 
 
 ```
 // Dados do token
