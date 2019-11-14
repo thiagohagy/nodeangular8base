@@ -1,5 +1,10 @@
 #Teste de tecnologias frotend e backend
 
+```
+//Repo do github para clonagem do projeto:
+git clone git@github.com:thiagohagy/MA_Test.git
+```
+
 * Para facilitar os testes das rotas, basta instalar a extensão REST Client para o visual studio e usar o arquivo /backend/http.rest.
 * Ao clicar em SendRequest a IDE vai fazer uma requisição conforme os parâmetros de cada request   
 * Todos as rotas exceto /me e /login são autenticadas e devem conter o campo 'token'(via query param), ou então você deve enviar o token no header 'authorization'
