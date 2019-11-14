@@ -4,6 +4,31 @@
 //Repo do github para clonagem do projeto:
 git clone git@github.com:thiagohagy/MA_Test.git
 ```
+------------------------------
+Para a instalação do projeto
+
+Backend:
+```
+  cd backend
+  cp config.js.dist config.js
+  npm install
+  nodemon index.js
+```
+
+Frontend:
+```
+  cd frontend
+  npm install
+  ng serve
+```
+
+Restaurar o bacup do banco de dados:
+```
+  cd dump
+  mongorestore dump_teste/minhasAudiencias/ -d minhasaudiencias
+```
+
+------------------------------
 
 * Para facilitar os testes das rotas, basta instalar a extensão REST Client para o visual studio e usar o arquivo /backend/http.rest.
 * Ao clicar em SendRequest a IDE vai fazer uma requisição conforme os parâmetros de cada request   
