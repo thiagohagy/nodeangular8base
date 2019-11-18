@@ -5,17 +5,24 @@
     </h3>
 
     <div class="row mt-2">
-        <input class="form-control" type="email" [(ngModel)]="email">
-        <input class="form-control mt-2" type="password" [(ngModel)]="password">
-
-        <div class="alert alert-warning col-12 mt-3" role="alert" *ngIf="showError">
-          <strong>Atenção!!</strong>Verifique seu email e senha 
+        <div class="col-12">
+            <input class="form-control p-2 col-12 " type="email" [(ngModel)]="email">
+            <input class="form-control p-2 col-12 mt-2" type="password" [(ngModel)]="password">
         </div>
-       
-        <div class="alert alert-success  col-12 mt-3" role="alert" *ngIf="showSuccess">
-          <strong>Uhull!!</strong>Login efetuado com sucesso 
+    </div>
+    
+    <div class="row mt-2">
+        <div class="col">
+            
+            <div class="alert alert-warning col-12 mt-3" role="alert" *ngIf="showError">
+                <strong>Atenção!!</strong>Verifique seu email e senha 
+            </div>
+    
+            <div class="alert alert-success  col-12 mt-3" role="alert" *ngIf="showSuccess">
+                <strong>Uhull!!</strong>Login efetuado com sucesso 
+            </div>
+            
+            <button type="button" class="btn btn-primary col mt-2" (click)='logar()' >Entrar</button>
         </div>
-
-        <button type="button" class="btn btn-primary col mt-3" (click)='logar()' >Entrar</button>
     </div>
 </div>

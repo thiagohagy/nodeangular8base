@@ -15,15 +15,15 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="name">Nome do usuário</label>
-                            <input type="email" class="form-control" id="name" [(ngModel)]="name" name="name" placeholder="Nome do usuário">
+                            <input type="email" class="p-2 form-control" id="name" [(ngModel)]="name" name="name" placeholder="Nome do usuário">
                         </div>                    
                     </div>
                     
                     <div class="col">
                         <div class="form-group">
                             <label for="email">Email do usuário</label>
-                            <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" placeholder="Email do usuário">
-                            <small id="emailHelp" class="form-text text-muted">Usado para fazer o login</small>
+                            <input type="email" class=" p-2 form-control" id="email" [(ngModel)]="email" name="email" placeholder="Email do usuário">
+                            <small id="emailHelp" class=" form-text text-muted">Usado para fazer o login</small>
                         </div>                    
                     </div>
                     
@@ -32,15 +32,15 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="pass">Senha</label>
-                            <input type="password" class="form-control" autocomplete="false" id="password" [(ngModel)]="password" name="password" placeholder="Senha">
-                            <small id="emailHelp" class="form-text text-muted" *ngIf="_id">Deixe a senha em branco para manter a atual</small>
+                            <input type="password" class=" p-2 form-control" autocomplete="false" id="password" [(ngModel)]="password" name="password" placeholder="Senha">
+                            <small id="emailHelp" class=" form-text text-muted" *ngIf="_id">Deixe a senha em branco para manter a atual</small>
                         </div>                    
                     </div>
                     
                     <div class="col">
                         <div class="form-group">
                             <label for="passc">Confirmação da senha</label>
-                            <input type="password" class="form-control" id="passc" [(ngModel)]="passwordC" name="passwordC" placeholder="Email do usuário">
+                            <input type="password" class="p-2 form-control" id="passc" [(ngModel)]="passwordC" name="passwordC" placeholder="Email do usuário">
                         </div>                    
                     </div>
                    
@@ -51,10 +51,10 @@
                         <div class="form-group">
                             <h4>Contatos</h4>
                             <div class="input-group" >
-                                <input class="form-control" type="text" [(ngModel)]="contactType" name="contactType" placeholder="Tipo do contato">
-                                <input class="form-control" type="text" [(ngModel)]="contactValue" name="contactValue" placeholder="Informaçao">
+                                <input class="form-control p-2" type="text" [(ngModel)]="contactType" name="contactType" placeholder="Tipo do contato">
+                                <input class="form-control p-2" type="text" [(ngModel)]="contactValue" name="contactValue" placeholder="Informaçao">
                                 <div class="input-group-append">
-                                    <span class="input-group-text btn btn-info" (click)="addContato()" id="my-addon">+</span>
+                                    <span class="input-group-text btn btn-success" (click)="addContato()" id="my-addon">Add</span>
                                 </div>
                             </div>
                         </div>                    
@@ -76,10 +76,10 @@
                                 <tr *ngFor="let contato of contatos; let i = index">
                                     <td>{{i + 1}}</td>
                                     <td>
-                                        <input class="form-control" type="text" [name]='"contatotype"+i'  [(ngModel)]="contato.type">
+                                        <input class="form-control p-2" type="text" [name]='"contatotype"+i'  [(ngModel)]="contato.type">
                                     </td>
                                     <td>
-                                        <input class="form-control" type="text" [name]='"contatovalue"+i' [(ngModel)]="contato.value">
+                                        <input class="form-control p-2" type="text" [name]='"contatovalue"+i' [(ngModel)]="contato.value">
                                     </td>
                                     <td>
                                         <button class="btn btn-sm btn-danger" (click)="contatos.splice(i, 1)">Remover</button>

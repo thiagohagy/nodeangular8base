@@ -10,21 +10,23 @@ import  { Subscription } from 'rxjs';
 })
 export class NavComponent implements OnInit {
 
-  private userToken: String;
+  // private userToken: String;
+  private isLogged: boolean;
 
   logout() {
-    this.userToken = '';
     this.authService.logout();
   }
 
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
-    this.userToken =  localStorage.getItem('token');
+    let token = localStorage.getItem('token')
+    this.isLogged =  token ? true : false;
   }
   
   ngAfterContentChecked() {
-    this.userToken =  localStorage.getItem('token');
+    let token = localStorage.getItem('token')
+    this.isLogged =  token ? true : false;
   }
 
 }
