@@ -15,6 +15,7 @@ import { HomeComponent } from './users/home/home.component';
 import { FormComponent } from './users/form/form.component';
 import { LoginComponent } from './auth/login/login.component';
 import { BuscaDetalhadaComponent } from './users/busca-detalhada/busca-detalhada.component';
+import { LoadingIndicatorComponent } from './shared/loading-indicator/loading-indicator.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { BuscaDetalhadaComponent } from './users/busca-detalhada/busca-detalhada
     LoginComponent,
     NavComponent,
     BuscaDetalhadaComponent,
+    LoadingIndicatorComponent,
   ],
   imports: [
     BrowserModule,
