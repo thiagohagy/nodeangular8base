@@ -12,10 +12,16 @@ import { CommonModule } from '@angular/common';
   imports: [
     FormsModule,
     CommonModule,
-    RouterModule,
+    RouterModule.forChild([
+      { 
+        path: 'login',
+        component: LoginComponent 
+      },  
+    ]),
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    RouterModule
   ]
 })
 
